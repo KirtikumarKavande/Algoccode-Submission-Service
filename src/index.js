@@ -3,8 +3,8 @@ const fastify = require('fastify')({ logger: true })
 
 const PORT=3000
 // Declare a route
-fastify.get('/', function handler (request, reply) {
-  reply.send({ hello: 'world' })
+fastify.get('/ping', function handler (req, res) {
+    res.send("pong")
 })
 
 // Run the server!

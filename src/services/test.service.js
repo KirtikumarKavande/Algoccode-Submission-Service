@@ -1,5 +1,6 @@
-async function testService(req,res){
-    return "pong from service"
-}
-
-module.exports = testService
+async function testService() {
+    return 'pong';
+  }
+  
+  module.exports = testService;
+  

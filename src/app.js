@@ -1,10 +1,10 @@
-const fastifyPlugin=require('fastify-plugin')
+const fastifyPlugin = require('fastify-plugin');
 
-async function app(fastify,options){
-fastify.register(require('@fastify/cors'))
+async function app(fastify, options) {
+  fastify.register(require('@fastify/cors'));
 
-fastify.register(require('./routes/testRoutes'))
-
+  // Registering routes with prefix
+  fastify.register(require('./routes/testRoutes'), { prefix: '/test' });
 }
 
-module.exports=fastifyPlugin(app)
+module.exports = fastifyPlugin(app);

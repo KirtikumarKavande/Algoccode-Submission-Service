@@ -1,17 +1,14 @@
-const app = require("./app");
-
-// Require the framework and instantiate it
-const fastify = require("fastify")({ logger: true });
+const fastify = require('fastify')({ logger: true });
+const app = require('./app');
 
 const PORT = 3000;
-// Declare a route
 
-fastify.register(app)
-// Run the server!
+fastify.register(app);
+
 fastify.listen({ port: PORT }, (err) => {
   if (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-  console.log("server is running on PORT", PORT);
+  console.log(`Server is running on PORT ${PORT}`);
 });

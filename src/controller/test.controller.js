@@ -1,4 +1,9 @@
+const testService = require("../services/test.service");
+
 const testController = async (req, res) => {
-  return res.send({ data: " pong" });
+const response=await testService()
+res.send(response)
+
+  
 };
 module.exports = testController;

@@ -1,9 +1,8 @@
 
 async function createSubmission(req, res) {
-  console.log(req.body)
 const response=this.submissionService
-  console.log("subservice",await response.addSubmission())
-  res.send(response)
+  const data=await response.addSubmission(req.body)
+  res.send(data)
   
 }
 module.exports = { createSubmission };

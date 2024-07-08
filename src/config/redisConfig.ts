@@ -1,5 +1,6 @@
+const serverConfig= require("./server.config") ;
+
 const Redis = require("ioredis");
-import serverConfig from "./server.config";
 
 const redisConfig = {
   port: serverConfig.REDIS_PORT,

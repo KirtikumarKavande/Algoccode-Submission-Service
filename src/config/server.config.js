@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+const dotenv=require('dotenv')
 dotenv.config();
 
 const serverConfig = {
@@ -6,4 +6,4 @@ const serverConfig = {
   REDIS_PORT: process.env.REDIS_PORT || 6379,
   REDIS_HOST: process.env.REDIS_HOST || "127.0.0.1",
 };
-export default serverConfig;
+module.exports= serverConfig;

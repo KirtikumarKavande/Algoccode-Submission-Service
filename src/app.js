@@ -1,10 +1,10 @@
-const fastifyPlugin = require('fastify-plugin');
+const fastifyPlugin = require("fastify-plugin");
+const servicePlugin = require("./services/servicePlugin");
 
 async function app(fastify, options) {
-  fastify.register(require('@fastify/cors'));
-
-  // Registering routes with prefix
-  fastify.register(require('./routes/testRoutes'), { prefix: '/test' });
+  await fastify.register(require("@fastify/cors"));
+  await fastify.register(require("./routes/index"), { prefix: "/api" });
+  await fastify.register(servicePlugin);
 }
 
 module.exports = fastifyPlugin(app);

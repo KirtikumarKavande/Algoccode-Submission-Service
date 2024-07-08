@@ -1,14 +1,14 @@
 const fastify = require('fastify')({ logger: true });
 const app = require('./app');
+const serverConfig = require('./config/server.config');
 
-const PORT = 3000;
 
 fastify.register(app);
 
-fastify.listen({ port: PORT }, (err) => {
+fastify.listen({ port: serverConfig.PORT }, (err) => {
   if (err) {
     fastify.log.error(err);
     process.exit(1);
   }
-  console.log(`Server is running on PORT ${PORT}`);
+  console.log(`Server is running on PORT ${serverConfig.PORT}`);
 });

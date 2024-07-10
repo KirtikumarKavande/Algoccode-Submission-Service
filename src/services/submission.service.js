@@ -1,10 +1,17 @@
 const submissionQueueProducer = require("../producers/submissionQueue.producer");
 
 class SubmissionService {
-  constructor() {}
+  constructor(submissionRepository) {
+    this.submissionRepository = submissionRepository;
+  }
 
   async addSubmission(data) {
-  return await submissionQueueProducer(data)
+    const dataFromDB = await this.submissionRepository.createSubmission(data);
+    let queueResponse = await submissionQueueProducer(dataFromDB);
+    return {
+      queueResponse,
+      dbResponse: dataFromDB,
+    };
   }
 }
 

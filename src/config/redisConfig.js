@@ -8,5 +8,4 @@ const redisConfig = {
   maxRetriesPerRequest: null,
 };
 const redisConnection = new Redis(redisConfig);
-
-export default redisConnection;
+module.exports= redisConnection;

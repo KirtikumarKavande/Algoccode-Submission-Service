@@ -5,7 +5,8 @@ class SubmissionRepository {
         this.submissionModel = Submission;
     }
     async createSubmission(submission) {
-        return await submissionModel.create(submission)
+        console.log("inside submission",submission)
+        return await this.submissionModel.create(submission)
     }
 }
 

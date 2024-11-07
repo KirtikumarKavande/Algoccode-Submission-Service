@@ -1,7 +1,7 @@
 const { createSubmission } = require("../../controller/submission.controller");
 
 async function submissionRoutes(fastify, options) {
-  fastify.post("/addsubmission", createSubmission);
+  fastify.post("/addsubmissions", createSubmission);
 }
 
 module.exports = submissionRoutes;

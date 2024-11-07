@@ -4,6 +4,7 @@ async function connectToDB() {
   try {
     if (NODE_ENV === "development") {
       await mongoose.connect(MONGODB_CONNECTION_URL);
+      console.log("connected to db");
     }
   } catch (error) {
     console.log("unable to connect db", error);

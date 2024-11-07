@@ -1,4 +1,4 @@
-const fastify = require('fastify')({ logger: true });
+const fastify = require('fastify')({ logger: false });
 const app = require('./app');
 const connectToDB = require('./config/db.config');
 const serverConfig = require('./config/server.config');
@@ -11,7 +11,12 @@ fastify.listen({ port: serverConfig.PORT }, async(err) => {
     fastify.log.error(err);
     process.exit(1);
   }
-  await connectToDB()
-  console.log(`Server is running on PORT ${serverConfig.PORT}`);
+  try {
+    await connectToDB()
+    console.log(`Server is running on PORT ${serverConfig.PORT}`);
+  } catch (error) {
+    console.log(error)
+  }
+  
 
 });

@@ -1,3 +1,4 @@
+const { fetchProblemDetails } = require("../apis/problemAdminApi");
 const submissionQueueProducer = require("../producers/submissionQueue.producer");
 
 class SubmissionService {
@@ -8,12 +9,35 @@ class SubmissionService {
   async addSubmission(data) {
     try {
       console.log("addSubmission", data);
-    const dataFromDB = await this.submissionRepository.createSubmission(data);
-    console.log("dataFromDB", dataFromDB);
-    let queueResponse = await submissionQueueProducer(dataFromDB);
+      const problemId = data.problemId;
+      const userId = data.userId;
+
+      const problemAdminApiResponse = await fetchProblemDetails(problemId);
+      console.log(problemAdminApiResponse,problemAdminApiResponse)
+      if(!problemAdminApiResponse) {
+        throw new Error('Failed to create a submission in the repository');
+    }
+    // const languageCodeStub = problemAdminApiResponse.data.codeStubs.find(codeStub => codeStub.language.toLowerCase() === submissionPayload.language.toLowerCase());
+    // const languageCodeStub = problemAdminApiResponse.data.codeStubs.find(codeStub => codeStub.language.toLowerCase() === submissionPayload.language.toLowerCase());
+
+    const submission  = await this.submissionRepository.createSubmission(data);
+    console.log("submission ", submission );
+    let queueResponse = await submissionQueueProducer(
+      {
+        [submission._id]: {
+            code: submission.code,
+            language: submission.language,
+            inputCase: problemAdminApiResponse.data.testCases[0].input,
+            outputCase: problemAdminApiResponse.data.testCases[0].output,
+            userId,
+            submissionId: submission._id
+
+        }
+    }
+    );
     return {
       queueResponse,
-      dbResponse: dataFromDB,
+      dbResponse: submission ,
     };
     } catch (error) {
    

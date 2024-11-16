@@ -22,13 +22,13 @@ class SubmissionService {
 
     const submission  = await this.submissionRepository.createSubmission(data);
     console.log("submission ", submission );
+    console.log("submission ", problemAdminApiResponse );
     let queueResponse = await submissionQueueProducer(
       {
         [submission._id]: {
             code: submission.code,
             language: submission.language,
-            inputCase: problemAdminApiResponse.data.testCases[0].input,
-            outputCase: problemAdminApiResponse.data.testCases[0].output,
+            testCases: problemAdminApiResponse.data.testCases,
             userId,
             submissionId: submission._id
 

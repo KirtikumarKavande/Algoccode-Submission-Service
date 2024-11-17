@@ -7,6 +7,7 @@ const serverConfig = {
   REDIS_HOST: process.env.REDIS_HOST || "127.0.0.1",
   MONGODB_CONNECTION_URL:process.env.MONGODB_CONNECTION_URL,
   NODE_ENV:process.env.NODE_ENV,
-  PROBLEM_ADMIN_SERVICE_URL:process.env.PROBLEM_ADMIN_SERVICE_URL
+  PROBLEM_ADMIN_SERVICE_URL:process.env.PROBLEM_ADMIN_SERVICE_URL,
+  SOCKET_SERVER_URL:process.env.SOCKET_SERVER_URL
 };
 module.exports= serverConfig;

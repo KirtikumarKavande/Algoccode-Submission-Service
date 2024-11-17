@@ -1,1 +1,5 @@
-export const evaluator_queue="EvaluatorQueue"
+ const evaluator_queue="EvaluatorQueue"
+
+ module.exports={
+     evaluator_queue
+ }

@@ -1,3 +1,4 @@
+const sendPayloadSocketService = require("../helper/sendpayloadsocket");
 
  class EvolutionJob {
 
@@ -6,9 +7,15 @@
       this.name = this.constructor.name;
   }
   handle = async (job) => {
-    if (job) {
-      console.log("socket create",job.data)
+    try {
+      if (job) {
+        console.log("socket create",job.data)
+        sendPayloadSocketService(job.data)
+      }
+    } catch (error) {
+      console.log(error)
     }
+   
   };
 
   failed = (job) => {
